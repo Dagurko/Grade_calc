@@ -66,3 +66,13 @@ h1 {
 .add-button:hover {
     background-color: #e4c60f;
 }
+
+.calculate-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+}
