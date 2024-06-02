@@ -1,0 +1,68 @@
+body {
+    background-color: #dc1414;
+    color: #f4d718;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    margin-top: 50px;
+}
+
+.input-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 50px;
+}
+
+.assignment-grades,
+.quiz-grades,
+.final-grades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.grade-entry {
+    display: flex;
+    gap: 10px;
+}
+
+.wheight input {
+    width: 100%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.wheight::after {
+    content: '%';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.add-button {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #f4d718;
+    color: #dc1414;
+    border: none;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #e4c60f;
+}

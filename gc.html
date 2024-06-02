@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <link rel="stylesheet" type="text/css" href="gc.css">
+    <script src="gc.js"></script>
+</head>
+<body> 
+    <h1>Grade Calculator</h1>
+
+    <div class="input-box">
+        <div class="assignment-grades">
+            <h2>Assignments</h2>
+            <div class="grades">
+                <div class="grade-entry">
+                    <input type="text" name="name" placeholder="Enter name...">
+                    <input type="text" name="grade" placeholder="Enter grade...">
+                    <input type="text" name="weight" placeholder="Enter weight...">
+                </div>
+            </div>
+            <button class="add-button" onclick="addGradeInput('assignment-grades')">Add Assignment</button>
+        </div>
+
+        <div class="quiz-grades">
+            <h2>Quizzes</h2>
+            <div class="grades">
+                <div class="grade-entry">
+                    <input type="text" name="name" placeholder="Enter name...">
+                    <input type="text" name="grade" placeholder="Enter grade...">
+                    <input type="text" name="weight" placeholder="Enter weight...">
+                </div>
+            </div>
+            <button class="add-button" onclick="addGradeInput('quiz-grades')">Add Quiz</button>
+        </div>
+
+        <div class="final-grades">
+            <h2>Final</h2>
+            <div class="grades">
+                <div class="grade-entry">
+                    <input type="text" name="name" placeholder="Enter name...">
+                    <input type="text" name="grade" placeholder="Enter grade...">
+                    <input type="text" name="weight" placeholder="Enter weight...">
+                </div>
+            </div>
+            <button class="add-button" onclick="addGradeInput('final-grades')">Add Final</button>
+        </div>
+    </div>
+</body>
+</html>
