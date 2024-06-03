@@ -100,8 +100,7 @@ input[type="text"] {
 .add-button,
 .calculate-button,
 .reset-button,
-.format-button, 
-.toggle-button {
+.format-button {
     display: block;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -133,10 +132,12 @@ input[type="text"] {
 
 .calculate-button:hover {
     transform: scale(1.05);
+    background-color: #FF6347; 
 }
 
 .reset-button:hover {
     transform: scale(1.05);
+    background-color: #e74c3c;
 }
 
 .format-button:hover {
@@ -197,31 +198,5 @@ input[type="text"] {
     color: #888;
 }
 
-
-.toggle-button:hover {
-    transform: scale(1.05);
-}
-
-.toggle-button .tooltip {
-    visibility: hidden;
-    width: 160px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; 
-    left: 50%;
-    margin-left: -80px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.toggle-button:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-}
 
 
