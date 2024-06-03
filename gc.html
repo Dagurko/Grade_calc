@@ -8,8 +8,12 @@
     <script src="gc.js"></script>
 </head>
 <body> 
-    <h1>Grade Calculator</h1>
-
+    <h1 onclick="location.reload()">Grade Calculator</h1>
+    <div class="format">
+    <button class="format-button" onclick="changeFormat(0.1)">Display as Decimal</button>
+    <button class="format-button" onclick="changeFormat(1)">Display as Part of 10</button>
+    <button class="format-button" onclick="changeFormat(10)">Display as Part of 100</button>
+    </div>
     <div class="input-box">
         <div class="assignment-grades">
             <h2>Assignments</h2>
@@ -17,10 +21,16 @@
                 <div class="grade-entry">
                     <input type="text" name="assignment-name" placeholder="Enter name...">
                     <input type="text" name="assignment-grade" placeholder="Enter grade...">
-                    <input type="text" name="assignment-weight" placeholder="Enter weight...">
+                    <div class="weight-input-container">
+                        <input type="text" name="assignment-weight" placeholder="Enter weight...">
+                        <span class="weight-unit">%</span>
+                    </div>
+                    <button class="remove-button" onclick="removeGradeInput(this)">Remove</button>
                 </div>
             </div>
-            <button class="add-button" onclick="addGradeInput('assignment')">Add Assignment</button>
+            <div class="button-container">
+                <button class="add-button" onclick="addGradeInput('assignment')">Add</button>
+            </div>
         </div>
 
         <div class="quiz-grades">
@@ -29,24 +39,44 @@
                 <div class="grade-entry">
                     <input type="text" name="quiz-name" placeholder="Enter name...">
                     <input type="text" name="quiz-grade" placeholder="Enter grade...">
-                    <input type="text" name="quiz-weight" placeholder="Enter weight...">
+                    <div class="weight-input-container">
+                        <input type="text" name="quiz-weight" placeholder="Enter weight...">
+                        <span class="weight-unit">%</span>
+                    </div>
+                    <button class="remove-button" onclick="removeGradeInput(this)">Remove</button>
                 </div>
             </div>
-            <button class="add-button" onclick="addGradeInput('quiz')">Add Quiz</button>
+            <div class="button-container">
+                <button class="add-button" onclick="addGradeInput('quiz')">Add</button>
+            </div>
         </div>
 
-        <div class="final-grades">
-            <h2>Final</h2>
+        <div class="exam-grades">
+            <h2>Exams</h2>
             <div class="grades">
                 <div class="grade-entry">
-                    <input type="text" name="final-name" placeholder="Enter name...">
-                    <input type="text" name="final-grade" placeholder="Enter grade...">
-                    <input type="text" name="final-weight" placeholder="Enter weight...">
+                    <input type="text" name="exam-name" placeholder="Enter name...">
+                    <input type="text" name="exam-grade" placeholder="Enter grade...">
+                    <div class="weight-input-container">
+                        <input type="text" name="exam-weight" placeholder="Enter weight...">
+                        <span class="weight-unit">%</span>
+                    </div>
+                    <button class="remove-button" onclick="removeGradeInput(this)">Remove</button>
                 </div>
             </div>
-            <button class="add-button" onclick="addGradeInput('final')">Add Final</button>
+            <div class="button-container">
+                <button class="add-button" onclick="addGradeInput('exam')">Add</button>
+            </div>
         </div>
     </div>
-    <button class="calculate-button" onclick="calculateGrade()">Calculate</button>
+
+    <div class="result-buttons">
+        <button class="reset-button" onclick="reset()">Reset</button>
+        <button class="calculate-button" onclick="calculateGrade()">Calculate Grade</button>
+        <button class="calculate-button" onclick="calcGradeNeeded()">Calculate Grade Needed In Final</button>
+    </div>
+    <div class="result">
+        <p>Result: <span id="number-grade"></span><span id="letter-grade"></span></p>  
+    </div>
 </body>
-</html> 
+</html>
