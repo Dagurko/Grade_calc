@@ -15,7 +15,6 @@ h1 {
 h1:hover {
     color: #FF6347; 
     transform: scale(1.1); 
-    text-shadow: 0 0 10px #4CAF50, 0 0 10px #4CAF50, 0 0 10px #4CAF50; 
 }
 
 .input-box {
@@ -142,6 +141,7 @@ input[type="text"] {
 
 .format-button:hover {
     transform: scale(1.05);
+    background-color: darkgreen;
 }
 
 .result-buttons {
