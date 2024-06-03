@@ -1,7 +1,7 @@
 [build]
-  publish = "."
+    publish = "."
 
 [[redirects]]
-  from = "/*"
-  to = "/gc.html"
-  status = 200
+    from = "/*"
+    to = "/gc.html"
+    status = 200
