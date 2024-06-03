@@ -1,5 +1,6 @@
 let currentGrade = 0;
 let gradeNeeded = false;
+let rounded = false;
 let factor = 1;
 
 function addGradeInput(section) {
@@ -28,6 +29,11 @@ function removeGradeInput(button) {
 function calcGradeNeeded() {
     gradeNeeded = true;
     calculateGrade();
+}
+
+function rounding() {
+    rounded = !rounded
+    calculateGrade()
 }
 
 function calculateGrade() {
@@ -72,7 +78,6 @@ function calculateGrade() {
     if (weight_total !== 100) {
         if (gradeNeeded == true) {
             currentGrade = (4.75-(ass_grade + quiz_grade + exam_grade)/100)*(100-weight_total)/10
-
             console.log(currentGrade);
             displayGrade(currentGrade, factor); 
             gradeNeeded = false;
@@ -82,7 +87,7 @@ function calculateGrade() {
         console.log(weight_total);
     } 
     else if (weight_total == 100 && gradeNeeded == true) {
-        alert('Total weight adds up to 100')
+        alert('Total weight adds up to 100');
     }
     else {
         currentGrade = (ass_grade + quiz_grade + exam_grade)/100;
@@ -96,6 +101,12 @@ function displayGrade(grade, factor) {
         document.getElementById('number-grade').textContent = 'You cannot pass :(';
         return;
     }
+    if (rounded == true) {
+        grade = Math.round(grade * 10) / 10;
+        console.log(grade);
+        grade = Math.round((grade) * 2) / 2;
+        console.log(grade);
+    }
     document.getElementById('number-grade').textContent = (grade * factor).toFixed(2);
     document.getElementById('letter-grade').textContent = number_to_letter(grade*10)
 }
@@ -103,7 +114,7 @@ function displayGrade(grade, factor) {
 function changeFormat(factorc) {
     factor = factorc
     if (currentGrade == 0) {
-        return
+        return;
     }
     displayGrade(currentGrade, factorc);
 }
