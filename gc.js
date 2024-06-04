@@ -44,11 +44,14 @@ function calculateGrade() {
     const assignments = getGrades('assignment');
     const quizzes = getGrades('quiz');
     const exams = getGrades('exam');
-
     console.log('Assignments:', assignments);
     console.log('Quizzes:', quizzes);
     console.log('Exams:', exams);
-    if (assignments.length === 0 && quizzes.length === 0 && exams.length === 0) {
+
+    if (assignments.includes('Invalid') || quizzes.includes('Invalid') || exams.includes('Invalid')) {
+        return;
+    }
+    else if (assignments.length === 0 && quizzes.length === 0 && exams.length === 0) {
         alert("No grades entered");
         return;
     }
@@ -59,21 +62,21 @@ function calculateGrade() {
 
     for (ass of assignments) {
         if (ass.grade > 10) {
-            ass.grade= ass.grade/10;
+            ass.grade= ass.grade / 10;
         }
         weight_total += parseFloat(ass.weight);
         ass_grade += parseFloat(ass.grade) * parseFloat(ass.weight);
     }
     for (quiz of quizzes) {
         if (quiz.grade > 10 ) {
-            quiz.grade= quiz.grade/10;
+            quiz.grade= quiz.grade / 10;
         }
         weight_total += parseFloat(quiz.weight);
         quiz_grade += parseFloat(quiz.grade) * parseFloat(quiz.weight);
     }
     for (exam of exams) {
         if (exam.grade > 10 ) {
-            exam.grade= exam.grade/10;
+            exam.grade= exam.grade / 10;
         }
         weight_total += parseFloat(exam.weight);
         exam_grade += parseFloat(exam.grade) * parseFloat(exam.weight);
@@ -81,7 +84,7 @@ function calculateGrade() {
 
     if (weight_total !== 100) {
         if (gradeNeeded == true) {
-            currentGrade = (4.75-(ass_grade + quiz_grade + exam_grade)/100)*(100-weight_total)/10
+            currentGrade = (4.75 * 100 - (ass_grade + quiz_grade + exam_grade)) / (100 - weight_total);
             console.log(currentGrade);
             displayGrade(currentGrade, factor); 
             gradeNeeded = false;
@@ -105,10 +108,12 @@ function displayGrade(grade, factor) {
     if (gradeNeeded == true) {
         if (grade < 0) {
             document.getElementById('number-grade').textContent = 'You do not have to take the test to pass :)';
+            document.getElementById('letter-grade').textContent = '';
             return;
         }
         if (grade > 10) {
             document.getElementById('number-grade').textContent = 'You cannot pass :(';
+            document.getElementById('letter-grade').textContent = '';
             return;
         } 
     }
@@ -162,22 +167,20 @@ function getGrades(section) {
         let gradeInput = entry.querySelector(`input[name="${section}-grade"]`);
         let weightInput = entry.querySelector(`input[name="${section}-weight"]`);
 
-        if (gradeInput == null) {
-            gradeInput = 0;
+        if (!gradeInput || !weightInput) {
+            continue; 
         }
-        if (weightInput == null) {
-            weightInput = 0;
-        }
-        let grade = gradeInput.value;
+        
+        let grade = gradeInput.value.trim();
         let weight = parseFloat(weightInput.value);
+
         if (grade.includes('/')) {
-            let gradeStr = String(grade);
-            const [numerator, denominator] = gradeStr.split('/').map(Number);
+            const [numerator, denominator] = grade.split('/').map(Number);
             if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
-                grade = (numerator / denominator) * 100;
+                grade = (numerator / denominator) * 10; 
             } else {
                 alert('Invalid fraction format. Please enter as numerator/denominator.');
-                return [];
+                return ['Invalid'];
             }
         } else {
             grade = parseFloat(grade);
@@ -187,6 +190,7 @@ function getGrades(section) {
             grades.push({ name, grade, weight });
         }
     }
+
     return grades;
 }
 
