@@ -12,7 +12,7 @@ function addGradeInput(section) {
         <input type="text" name="${section}-name" placeholder="Enter name...">
         <input type="text" name="${section}-grade" placeholder="Enter grade...">
         <div class="weight-input-container">
-            <input type="text" name="assignment-weight" placeholder="Enter weight...">
+            <input type="text" name="${section}-weight" placeholder="Enter weight...">
             <span class="weight-unit">%</span>
         </div>
         <button class="remove-button" onclick="removeGradeInput(this)">Remove</button>
@@ -97,18 +97,29 @@ function calculateGrade() {
 }
 
 function displayGrade(grade, factor) {
-    if (gradeNeeded == true && grade > 10) {
-        document.getElementById('number-grade').textContent = 'You cannot pass :(';
-        return;
+    if (gradeNeeded == true) {
+        if (grade < 0) {
+            document.getElementById('number-grade').textContent = 'You do not have to take the test to pass :)';
+            return;
+        }
+        if (grade > 10) {
+            document.getElementById('number-grade').textContent = 'You cannot pass :(';
+            return;
+        } 
     }
     if (rounded == true) {
-        grade = Math.round(grade * 10) / 10;
-        console.log(grade);
-        grade = Math.round((grade) * 2) / 2;
-        console.log(grade);
+        grade = round_it(grade)
     }
     document.getElementById('number-grade').textContent = (grade * factor).toFixed(2);
     document.getElementById('letter-grade').textContent = number_to_letter(grade*10)
+}
+
+function round_it(grade) {
+    grade = Math.round(grade * 10) / 10;
+    console.log(grade);
+    grade = Math.round((grade) * 2) / 2;
+    console.log(grade);
+    return grade;
 }
 
 function changeFormat(factorc) {
@@ -171,7 +182,6 @@ function getGrades(section) {
             grades.push({ name, grade, weight });
         }
     }
-
     return grades;
 }
 
