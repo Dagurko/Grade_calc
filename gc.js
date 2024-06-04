@@ -1,5 +1,6 @@
 let currentGrade = 0;
 let gradeNeeded = false;
+let weight_total = 0;
 let rounded = false;
 let factor = 1;
 
@@ -32,8 +33,11 @@ function calcGradeNeeded() {
 }
 
 function rounding() {
+    document.getElementById('round-button').textContent = rounded ? 'Round' : 'Exact';
     rounded = !rounded;
-    calculateGrade();
+    if (weight_total == 100) {
+        calculateGrade();
+    }
 }
 
 function calculateGrade() {
@@ -51,7 +55,7 @@ function calculateGrade() {
     let ass_grade = 0;
     let quiz_grade = 0;
     let exam_grade = 0;
-    let weight_total = 0;
+    weight_total = 0;
 
     for (ass of assignments) {
         if (ass.grade > 10) {
