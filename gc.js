@@ -88,6 +88,7 @@ function calculateGrade() {
     } 
     else if (weight_total == 100 && gradeNeeded == true) {
         alert('Total weight adds up to 100');
+        gradeNeeded = false;
     }
     else {
         currentGrade = (ass_grade + quiz_grade + exam_grade)/100;
