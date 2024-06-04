@@ -32,8 +32,8 @@ function calcGradeNeeded() {
 }
 
 function rounding() {
-    rounded = !rounded
-    calculateGrade()
+    rounded = !rounded;
+    calculateGrade();
 }
 
 function calculateGrade() {
@@ -112,7 +112,7 @@ function displayGrade(grade, factor) {
         grade = round_it(grade)
     }
     document.getElementById('number-grade').textContent = (grade * factor).toFixed(2);
-    document.getElementById('letter-grade').textContent = number_to_letter(grade*10)
+    document.getElementById('letter-grade').textContent = number_to_letter(grade*10);
 }
 
 function round_it(grade) {
@@ -124,7 +124,7 @@ function round_it(grade) {
 }
 
 function changeFormat(factorc) {
-    factor = factorc
+    factor = factorc;
     if (currentGrade == 0) {
         return;
     }
