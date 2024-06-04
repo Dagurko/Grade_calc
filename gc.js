@@ -142,12 +142,20 @@ function getGrades(section) {
     const grades = [];
 
     for (let entry of gradeEntries) {
-        const name = entry.querySelector(`input[name="${section}-name"]`).value;
-        let grade = entry.querySelector(`input[name="${section}-grade"]`).value;
-        const weight = parseFloat(entry.querySelector(`input[name="${section}-weight"]`).value);
+        let name = entry.querySelector(`input[name="${section}-name"]`).value;
+        let gradeInput = entry.querySelector(`input[name="${section}-grade"]`);
+        let weightInput = entry.querySelector(`input[name="${section}-weight"]`);
 
+        if (gradeInput == null) {
+            gradeInput = 0;
+        }
+        if (weightInput == null) {
+            weightInput = 0;
+        }
+        let grade = gradeInput.value;
+        let weight = parseFloat(weightInput.value);
         if (grade.includes('/')) {
-            const gradeStr = String(grade);
+            let gradeStr = String(grade);
             const [numerator, denominator] = gradeStr.split('/').map(Number);
             if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
                 grade = (numerator / denominator) * 100;
